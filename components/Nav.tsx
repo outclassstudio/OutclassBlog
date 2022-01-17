@@ -9,13 +9,13 @@ export default function Nav() {
 
   return (
     <nav>
-      <img onClick={() => navigate()} src="/vercel.svg" />
+      <img onClick={() => navigate()} src="/Logo.png" />
       <div>
         <Link href="/">
-          <a>Home</a>
+          <a className={router.pathname === "/" ? "active" : ""}>Home</a>
         </Link>
         <Link href="/about">
-          <a>about</a>
+          <a className={router.pathname === "/about" ? "active" : ""}>about</a>
         </Link>
       </div>
       <style jsx>{`
@@ -27,11 +27,11 @@ export default function Nav() {
           justify-content: center;
           align-items: center;
           background-color: white;
-          box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-            rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -40px,
+            rgba(0, 0, 0, 0.3) 0px 30px 60px -50px;
         }
         img {
-          width: 100px;
+          width: 80px;
           cursor: pointer;
         }
         a {
@@ -39,6 +39,10 @@ export default function Nav() {
         }
         a:hover {
           color: tomato;
+        }
+        .active {
+          color: tomato;
+          font-weight: bold;
         }
       `}</style>
     </nav>

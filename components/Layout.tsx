@@ -1,3 +1,4 @@
+import Footer from "./Footer";
 import Nav from "./Nav";
 
 interface props {
@@ -7,8 +8,9 @@ interface props {
 export default function Layout({ children }: props) {
   return (
     <>
-      <Nav></Nav>
+      <Nav />
       <div>{children}</div>
+      <Footer />
     </>
   );
 }
