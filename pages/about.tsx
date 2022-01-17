@@ -1,8 +1,10 @@
 import { NextPage } from "next";
+import Seo from "../components/Seo";
 
 const About: NextPage = () => {
   return (
     <div className="container">
+      <Seo title="About" />
       <div className="main">
         <div className="left">
           <img src="/Logo.png" />

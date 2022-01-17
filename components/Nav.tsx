@@ -15,7 +15,12 @@ export default function Nav() {
           <a className={router.pathname === "/" ? "active" : ""}>Home</a>
         </Link>
         <Link href="/about">
-          <a className={router.pathname === "/about" ? "active" : ""}>about</a>
+          <a className={router.pathname === "/about" ? "active" : ""}>About</a>
+        </Link>
+        <Link href="/contact">
+          <a className={router.pathname === "/contact" ? "active" : ""}>
+            Contact
+          </a>
         </Link>
       </div>
       <style jsx>{`
@@ -36,12 +41,13 @@ export default function Nav() {
         }
         a {
           margin: 0px 5px 0px 5px;
+          font-weight: bold;
         }
         a:hover {
-          color: tomato;
+          color: #c70ec7;
         }
         .active {
-          color: tomato;
+          color: #c70ec7;
           font-weight: bold;
         }
       `}</style>

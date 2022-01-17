@@ -1,22 +1,28 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
+import type { GetServerSideProps, NextPage } from "next";
 import axios from "axios";
 import MoviePreview from "../components/MoviePreview";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Seo from "../components/Seo";
 
 const Home: NextPage = () => {
+  // console.log(data);
+
   const router = useRouter();
   const navigate = (id: number, title: string) => {
     router.push(`/movies/${title}/${id}`);
   };
   const [movies, setMovies] = useState<any>();
+  const [recommended, setRecommended] = useState<any>();
 
   useEffect(() => {
     axios(`http://localhost:3000/api/movies`).then((res) => {
       setMovies(res.data.results);
+    });
+
+    axios(`http://localhost:3000/api/movies/634649`).then((res) => {
+      setRecommended(res.data);
+      // console.log(res.data);
     });
   }, []);
 
@@ -24,7 +30,8 @@ const Home: NextPage = () => {
 
   return (
     <div className="container">
-      <MoviePreview />
+      <Seo title="Home" />
+      <MoviePreview recommended={recommended} />
       <div className="main">
         <span className="main-header">Popular Movies</span>
         <div className="grid">
@@ -90,3 +97,10 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const data = await axios(`http://localhost:3000/api/movies`);
+//   const data = await res.json();
+
+//   return { props: { data } };
+// };
