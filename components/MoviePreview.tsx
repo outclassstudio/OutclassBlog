@@ -1,4 +1,17 @@
-export default function MoviePreview({ recommended }: any) {
+interface props {
+  recommended: {
+    title: string;
+    runtime: string;
+    release_date: string;
+    vote_average: string;
+    genres: string[];
+    poster_path: string;
+    homepage: string;
+    overview: string;
+  };
+}
+
+export default function MoviePreview({ recommended }: props) {
   // console.log(results);
   let imgUrl = recommended?.poster_path || "/Logo.png";
 
@@ -17,7 +30,11 @@ export default function MoviePreview({ recommended }: any) {
           <div className="box">
             Genres :
             {recommended?.genres.map((el: any) => {
-              return <span className="genres">{el.name}</span>;
+              return (
+                <span className="genres" key={el.id}>
+                  {el.name}
+                </span>
+              );
             })}
           </div>
           <div className="box">
@@ -86,12 +103,10 @@ export default function MoviePreview({ recommended }: any) {
 }
 
 // export const getServerSideProps: GetServerSideProps = async (context) => {
-//   let results: any;
+//   // let results: any;
 
-//   axios(`http://localhost:3000/api/movies`).then((res) => {
-//     results = res;
-//     // console.log(res);
-//   });
+//   const res = await fetch(`http://localhost:3000/api/movies`)
+//   const results = await res.json()
 
 //   return {
 //     props: {

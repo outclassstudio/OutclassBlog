@@ -1,12 +1,25 @@
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetServerSideProps, GetStaticProps, NextPage } from "next";
 import axios from "axios";
 import MoviePreview from "../components/MoviePreview";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Seo from "../components/Seo";
 
-const Home: NextPage = () => {
-  // console.log(data);
+interface movieInterface {
+  id: number;
+  title: string;
+  original_title: string;
+  runtime: string;
+  release_date: string;
+  vote_average: string;
+  genres: string[];
+  poster_path: string;
+  homepage: string;
+  overview: string;
+}
+
+const Home: NextPage = ({ props }: any) => {
+  console.log(props);
 
   const router = useRouter();
   const navigate = (id: number, title: string) => {
@@ -35,7 +48,7 @@ const Home: NextPage = () => {
       <div className="main">
         <span className="main-header">Popular Movies</span>
         <div className="grid">
-          {movies?.map((movie: any) => (
+          {movies?.map((movie: movieInterface) => (
             <div className="movie" key={movie.id}>
               <img
                 onClick={() => navigate(movie.id, movie.original_title)}
@@ -98,8 +111,8 @@ const Home: NextPage = () => {
 
 export default Home;
 
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const data = await axios(`http://localhost:3000/api/movies`);
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   const res = await fetch(`http://localhost:3000/api/movies`);
 //   const data = await res.json();
 
 //   return { props: { data } };
