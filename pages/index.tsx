@@ -1,11 +1,14 @@
 import type { GetServerSideProps, GetStaticProps, NextPage } from "next";
-import axios from "axios";
 import MoviePreview from "../components/MoviePreview";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Seo from "../components/Seo";
 
-interface movieInterface {
+interface IMovieProps {
+  results : Movie[];
+  recommended: Movie;
+}
+
+interface Movie {
   id: number;
   title: string;
   original_title: string;
@@ -18,28 +21,11 @@ interface movieInterface {
   overview: string;
 }
 
-const Home: NextPage = ({ props }: any) => {
-  console.log(props);
-
+const Home: NextPage<IMovieProps> = ({ results, recommended }) => {
   const router = useRouter();
   const navigate = (id: number, title: string) => {
     router.push(`/movies/${title}/${id}`);
   };
-  const [movies, setMovies] = useState<any>();
-  const [recommended, setRecommended] = useState<any>();
-
-  useEffect(() => {
-    axios(`http://localhost:3000/api/movies`).then((res) => {
-      setMovies(res.data.results);
-    });
-
-    axios(`http://localhost:3000/api/movies/634649`).then((res) => {
-      setRecommended(res.data);
-      // console.log(res.data);
-    });
-  }, []);
-
-  // console.log(movies);
 
   return (
     <div className="container">
@@ -48,11 +34,12 @@ const Home: NextPage = ({ props }: any) => {
       <div className="main">
         <span className="main-header">Popular Movies</span>
         <div className="grid">
-          {movies?.map((movie: movieInterface) => (
+          {results?.map((movie: Movie) => (
             <div className="movie" key={movie.id}>
-              <img
+              <img 
                 onClick={() => navigate(movie.id, movie.original_title)}
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                alt=""
               />
               <h4 onClick={() => navigate(movie.id, movie.original_title)}>
                 {movie.original_title}
@@ -111,9 +98,26 @@ const Home: NextPage = ({ props }: any) => {
 
 export default Home;
 
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   const res = await fetch(`http://localhost:3000/api/movies`);
-//   const data = await res.json();
+export const getServerSideProps: GetServerSideProps = async () => {
+  const res = await fetch(`http://localhost:3000/api/movies`)
+  const res2 = await fetch(`http://localhost:3000/api/movies/634649`)
+  const recommended = await res2.json()
+  const {results} = await res.json()
 
-//   return { props: { data } };
+  return {
+    props: {
+      results, recommended
+    },
+  };
+};
+
+// export const getStaticProps: GetServerSideProps = async () => {
+//   const res = await fetch(`http://localhost:3000/api/movies`)
+//   const {results} = await res.json()
+
+//   return {
+//     props: {
+//       results,
+//     },
+//   };
 // };
