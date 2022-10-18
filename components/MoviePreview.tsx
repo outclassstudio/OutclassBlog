@@ -12,7 +12,6 @@ interface props {
 }
 
 export default function MoviePreview({ recommended }: props) {
-  // console.log(results);
   let imgUrl = recommended?.poster_path || "/Logo.png";
 
   return (
@@ -39,7 +38,7 @@ export default function MoviePreview({ recommended }: props) {
           </div>
           <div className="box">
             Homepage :
-            <a href={recommended?.homepage} target="_blank">
+            <a href={recommended?.homepage} target="_blank" rel="noreferrer">
               {recommended?.homepage}
             </a>
           </div>
@@ -77,7 +76,7 @@ export default function MoviePreview({ recommended }: props) {
           margin-left: 5px;
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 12px;
         }
         .box {
           display: flex;
@@ -102,15 +101,3 @@ export default function MoviePreview({ recommended }: props) {
   );
 }
 
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   // let results: any;
-
-//   const res = await fetch(`http://localhost:3000/api/movies`)
-//   const results = await res.json()
-
-//   return {
-//     props: {
-//       results,
-//     },
-//   };
-// };
