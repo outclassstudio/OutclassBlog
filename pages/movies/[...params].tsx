@@ -45,7 +45,7 @@ export const getServerSideProps = async ({query, req}:any) => {
   const id = query.params[1];
   let movie:any
   try {
-    const { data } = await axios(`${req.headers.referer}/api/movies/${id}`)
+    const { data } = await axios(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`)
     movie = data
   } catch(error) {
     console.log(error)
