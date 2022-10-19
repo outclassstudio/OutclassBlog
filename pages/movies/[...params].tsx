@@ -41,11 +41,11 @@ const Detail: NextPage = ({movie}:any) => {
 
 export default Detail;
 
-export const getServerSideProps = async (context:any) => {
-  const id = context.query.params[1];
+export const getServerSideProps = async ({query, req}:any) => {
+  const id = query.params[1];
   let movie:any
   try {
-    const { data } = await axios(`http://localhost:3000/api/movies/${id}`)
+    const { data } = await axios(`${req.headers.referer}/api/movies/${id}`)
     movie = data
   } catch(error) {
     console.log(error)
