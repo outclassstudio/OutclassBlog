@@ -59,11 +59,11 @@ const Home: NextPage<IMovieProps> = ({ results, recommended }) => {
 
 export default Home;
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch(`http://localhost:3000/api/movies`)
-  const res2 = await fetch(`http://localhost:3000/api/movies/634649`)
-  const recommended = await res2.json()
-  const {results} = await res.json()
+export const getServerSideProps: GetServerSideProps = async ({req}:any) => {
+  const allMovies = await fetch(`${req.headers.referer}/api/movies`)
+  const previewMovies = await fetch(`${req.headers.referer}/api/movies/634649`)
+  const {results} = await allMovies.json()
+  const recommended = await previewMovies.json()
 
   return {
     props: {
