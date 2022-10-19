@@ -2,7 +2,7 @@ import Footer from "./Footer";
 import Nav from "./Nav";
 
 interface props {
-  children: any;
+  children: JSX.Element;
 }
 
 export default function Layout({ children }: props) {
