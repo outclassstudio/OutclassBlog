@@ -15,7 +15,7 @@ interface IMoviePrevieProps {
   };
 }
 
-const MoviePreview:NextPage<IMoviePrevieProps> = ({ recommended }) => {
+const MoviePreview: NextPage<IMoviePrevieProps> = ({ recommended }) => {
   let imgUrl = recommended?.poster_path || "/Logo.png";
 
   return (
@@ -23,7 +23,12 @@ const MoviePreview:NextPage<IMoviePrevieProps> = ({ recommended }) => {
       <MoviePreviewHeader>이달의 추천 영화</MoviePreviewHeader>
       <ContentWrapper>
         <LeftBox>
-          <Image width={380} height={569} alt="/Logo.png" src={`https://image.tmdb.org/t/p/w500/${imgUrl}`} />
+          <Image
+            width={380}
+            height={569}
+            alt="/Logo.png"
+            src={`https://image.tmdb.org/t/p/w500/${imgUrl}`}
+          />
         </LeftBox>
         <RightBox>
           <TextBox>Title : {recommended?.title}</TextBox>
@@ -33,11 +38,7 @@ const MoviePreview:NextPage<IMoviePrevieProps> = ({ recommended }) => {
           <TextBox>
             Genres :
             {recommended?.genres.map((el: any) => {
-              return (
-                <GenreText key={el.id}>
-                  {el.name}
-                </GenreText>
-              );
+              return <GenreText key={el.id}>{el.name}</GenreText>;
             })}
           </TextBox>
           <TextBox>
@@ -51,9 +52,9 @@ const MoviePreview:NextPage<IMoviePrevieProps> = ({ recommended }) => {
       </ContentWrapper>
     </MoviePreviewContainer>
   );
-}
+};
 
-export default MoviePreview
+export default MoviePreview;
 
 const MoviePreviewContainer = styled.div`
   width: 1000px;
@@ -63,29 +64,29 @@ const MoviePreviewContainer = styled.div`
   margin-top: 30px;
   padding: 20px;
   border: 1px solid #e9e9e9;
-`
+`;
 const MoviePreviewHeader = styled.div`
   font-size: 20px;
   font-weight: 700;
-`
+`;
 const ContentWrapper = styled.div`
   display: flex;
   justify-content: center;
-`
+`;
 const LeftBox = styled.div`
   flex: 2 1 0;
   margin-right: 5px;
 
   img {
   }
-`
+`;
 const RightBox = styled.div`
   flex: 3 1 0;
   margin-left: 5px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-`
+`;
 const TextBox = styled.div`
   display: flex;
   min-height: 50px;
@@ -95,7 +96,7 @@ const TextBox = styled.div`
   padding: 18px;
   font-size: 17px;
   font-weight: 700;
-`
+`;
 
 const GenreText = styled.span`
   margin: 0px 5px 0px 5px;
@@ -104,4 +105,4 @@ const GenreText = styled.span`
   background-color: #2b2b2b;
   font-weight: 500;
   color: white;
-`
+`;

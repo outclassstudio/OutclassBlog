@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-const Nav:NextPage = () => {
+const Nav: NextPage = () => {
   const router = useRouter();
   const navigate = (): void => {
     router.push("/");
@@ -12,7 +12,13 @@ const Nav:NextPage = () => {
 
   return (
     <NavContainer>
-      <Image width={80} height={89} onClick={() => navigate()} src="/Logo.png" alt="/Logo.png"/>
+      <Image
+        width={80}
+        height={89}
+        onClick={() => navigate()}
+        src="/Logo.png"
+        alt="/Logo.png"
+      />
       <Menus>
         <Link href="/">
           <a className={router.pathname === "/" ? "active" : ""}>Home</a>
@@ -28,9 +34,9 @@ const Nav:NextPage = () => {
       </Menus>
     </NavContainer>
   );
-}
+};
 
-export default Nav
+export default Nav;
 
 const NavContainer = styled.div`
   padding-top: 10px;
@@ -46,7 +52,7 @@ const NavContainer = styled.div`
   img {
     cursor: pointer;
   }
-`
+`;
 
 const Menus = styled.div`
   a {
@@ -60,4 +66,4 @@ const Menus = styled.div`
     color: #c70ec7;
     font-weight: bold;
   }
-`
+`;

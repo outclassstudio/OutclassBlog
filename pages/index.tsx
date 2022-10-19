@@ -6,7 +6,7 @@ import ImageTag from "next/image";
 import styled from "styled-components";
 
 interface IMovieProps {
-  results : Movie[];
+  results: Movie[];
   recommended: Movie;
 }
 
@@ -59,16 +59,21 @@ const Home: NextPage<IMovieProps> = ({ results, recommended }) => {
 
 export default Home;
 
-export const getServerSideProps: GetServerSideProps = async ({req}:any) => {
-  const id = 634649
-  const allMovies = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`)
-  const previewMovies = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`)
-  const { results } = await allMovies.json()
-  const recommended = await previewMovies.json()
+export const getServerSideProps: GetServerSideProps = async ({ req }: any) => {
+  const id = 634649;
+  const allMovies = await fetch(
+    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
+  );
+  const previewMovies = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
+  );
+  const { results } = await allMovies.json();
+  const recommended = await previewMovies.json();
 
   return {
     props: {
-      results, recommended
+      results,
+      recommended,
     },
   };
 };
@@ -79,17 +84,17 @@ const MainContainer = styled.div`
   align-items: center;
   flex-direction: column;
   overflow: auto;
-`
+`;
 const SubContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+`;
 const MainHeader = styled.span`
-  margin-left : 20px;
-  font-size : 20px;
+  margin-left: 20px;
+  font-size: 20px;
   font-weight: 700;
-`
+`;
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -97,13 +102,13 @@ const GridContainer = styled.div`
   padding: 20px;
   gap: 20px;
   justify-content: center;
-`
+`;
 
 const MovieBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+`;
 
 const ImageWrapper = styled.div`
   width: 225px;
@@ -122,4 +127,4 @@ const ImageWrapper = styled.div`
   &:hover {
     transform: scale(1.05) translateY(-10px);
   }
-`
+`;
