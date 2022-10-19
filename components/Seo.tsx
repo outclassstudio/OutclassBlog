@@ -1,13 +1,16 @@
+import { NextPage } from "next";
 import Head from "next/head";
 
-interface props {
+interface ISeoProps {
   title: string;
 }
 
-export default function Seo({ title }: props) {
+const Seo: NextPage<ISeoProps> = ({ title }) => {
   return (
     <Head>
       <title>{title} | Outclass Studio</title>
     </Head>
   );
-}
+};
+
+export default Seo;

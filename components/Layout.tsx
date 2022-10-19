@@ -1,11 +1,12 @@
+import { NextPage } from "next";
 import Footer from "./Footer";
 import Nav from "./Nav";
 
-interface props {
+interface ILayoutProps {
   children: JSX.Element;
 }
 
-export default function Layout({ children }: props) {
+const Layout: NextPage<ILayoutProps> = ({ children }) => {
   return (
     <>
       <Nav />
@@ -13,4 +14,6 @@ export default function Layout({ children }: props) {
       <Footer />
     </>
   );
-}
+};
+
+export default Layout;

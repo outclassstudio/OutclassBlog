@@ -18,7 +18,7 @@ export default Contact;
 const ContactMainContainer = styled.div`
   display: flex;
   justify-content: center;
-`
+`;
 const SubContainer = styled.div`
   width: 1000px;
   display: flex;
@@ -27,4 +27,4 @@ const SubContainer = styled.div`
   padding: 20px;
   border: 1px solid #e9e9e9;
   justify-content: center;
-`
+`;

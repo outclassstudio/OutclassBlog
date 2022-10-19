@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default function Footer() {
   return (
     <FooterDiv>
-      <div>Copyright Outclass Studio 2021 All Rights Reserved</div>
+      <div>Copyright Outclass Studio 2020 All Rights Reserved</div>
     </FooterDiv>
   );
 }
@@ -18,4 +18,4 @@ const FooterDiv = styled.footer`
   border-top: 1px solid #e9e9e9;
   color: #464646;
   font-size: 13px;
-`
+`;
