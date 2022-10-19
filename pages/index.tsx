@@ -60,9 +60,10 @@ const Home: NextPage<IMovieProps> = ({ results, recommended }) => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = async ({req}:any) => {
-  const allMovies = await fetch(`${req.headers.referer}/api/movies`)
-  const previewMovies = await fetch(`${req.headers.referer}/api/movies/634649`)
-  const {results} = await allMovies.json()
+  const id = 634649
+  const allMovies = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`)
+  const previewMovies = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`)
+  const { results } = await allMovies.json()
   const recommended = await previewMovies.json()
 
   return {
