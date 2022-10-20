@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 const Nav: NextPage = () => {
   const router = useRouter();
-  const navigate = (): void => {
+  const navigate = () => {
     router.push("/");
   };
 

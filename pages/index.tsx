@@ -4,26 +4,14 @@ import { useRouter } from "next/router";
 import Seo from "../components/Seo";
 import ImageTag from "next/image";
 import styled from "styled-components";
+import axios from "axios";
 
 interface IMovieProps {
-  results: Movie[];
-  recommended: Movie;
+  movies: MovieTypes.Movie[];
+  recommended: MovieTypes.Movie;
 }
 
-interface Movie {
-  id: number;
-  title: string;
-  original_title: string;
-  runtime: string;
-  release_date: string;
-  vote_average: string;
-  genres: string[];
-  poster_path: string;
-  homepage: string;
-  overview: string;
-}
-
-const Home: NextPage<IMovieProps> = ({ results, recommended }) => {
+const Home: NextPage<IMovieProps> = ({ movies, recommended }) => {
   const router = useRouter();
   const navigate = (id: number, title: string) => {
     router.push(`/movies/${title}/${id}`);
@@ -34,9 +22,9 @@ const Home: NextPage<IMovieProps> = ({ results, recommended }) => {
       <Seo title="Home" />
       <MoviePreview recommended={recommended} />
       <SubContainer>
-        <MainHeader>Popular Movies</MainHeader>
+        <MainHeader>TMDB 추천 영화</MainHeader>
         <GridContainer>
-          {results?.map((movie: Movie) => (
+          {movies?.map((movie: MovieTypes.Movie) => (
             <MovieBox key={movie.id}>
               <ImageWrapper>
                 <ImageTag
@@ -59,20 +47,20 @@ const Home: NextPage<IMovieProps> = ({ results, recommended }) => {
 
 export default Home;
 
-export const getServerSideProps: GetServerSideProps = async ({ req }: any) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const id = 634649;
-  const allMovies = await fetch(
+  const allMovies = await axios(
     `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
   );
-  const previewMovies = await fetch(
+  const previewMovies = await axios(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
   );
-  const { results } = await allMovies.json();
-  const recommended = await previewMovies.json();
+  const movies = allMovies.data.results;
+  const recommended = previewMovies.data
 
   return {
     props: {
-      results,
+      movies,
       recommended,
     },
   };
@@ -83,15 +71,19 @@ const MainContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap : 30px;
   overflow: auto;
 `;
 const SubContainer = styled.div`
+  width: 1000px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 const MainHeader = styled.span`
-  margin-left: 20px;
+  margin-top: 20px;
   font-size: 20px;
   font-weight: 700;
 `;
