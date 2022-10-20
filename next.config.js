@@ -1,7 +1,5 @@
 /** @type {import('next').NextConfig} */
 
-const API_KEY = "52848c297c4944da3060bd3892be6ca5";
-
 const nextConfig = {
   reactStrictMode: true,
   async redirects() {

@@ -1,9 +1,13 @@
 import axios from "axios";
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
 import styled from "styled-components";
 
-const Detail: NextPage = ({ movie }: any) => {
+interface IMovieProps {
+  movie : MovieTypes.Movie
+}
+
+const Detail: NextPage<IMovieProps> = ({ movie }) => {
   let imgUrl = movie?.poster_path || "/Logo.png";
 
   return (
@@ -16,6 +20,7 @@ const Detail: NextPage = ({ movie }: any) => {
               width={380}
               height={566}
               alt="/Logo.png"
+              loading="lazy"
               src={`https://image.tmdb.org/t/p/w500/${imgUrl}`}
             />
           </LeftBox>
@@ -26,7 +31,8 @@ const Detail: NextPage = ({ movie }: any) => {
             <TextBox>Rating : {movie?.vote_average}</TextBox>
             <TextBox>
               Genres :
-              {movie?.genres.map((el: any) => {
+              {movie?.genres.map((el: MovieTypes.Genres) => {
+                console.log(el, "genres")
                 return <GenreText key={el.id}>{el.name}</GenreText>;
               })}
             </TextBox>
@@ -46,9 +52,12 @@ const Detail: NextPage = ({ movie }: any) => {
 
 export default Detail;
 
-export const getServerSideProps = async ({ query, req }: any) => {
-  const id = query.params[1];
-  let movie: any;
+export const getServerSideProps: GetServerSideProps = async ({ query, req }) => {
+  let movie
+  let id 
+  if(query.params) {
+    id = query.params[1];
+  }
   try {
     const { data } = await axios(
       `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`

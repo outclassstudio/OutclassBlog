@@ -8,6 +8,7 @@ interface ISeoProps {
 const Seo: NextPage<ISeoProps> = ({ title }) => {
   return (
     <Head>
+      <link rel="icon" href="/favicon.png" />
       <title>{title} | Outclass Studio</title>
     </Head>
   );
