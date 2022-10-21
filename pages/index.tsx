@@ -48,7 +48,9 @@ const Home: NextPage<IMovieProps> = ({ movies, recommended }) => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const id = 634649;
+  // const id = 634649;
+  // const id = 616820
+  const id = 436270
   const allMovies = await axios(
     `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
   );
