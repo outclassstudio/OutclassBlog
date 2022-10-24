@@ -53,7 +53,6 @@ const NavContainer = styled.div`
     cursor: pointer;
   }
 `;
-
 const Menus = styled.div`
   a {
     margin: 0px 5px 0px 5px;

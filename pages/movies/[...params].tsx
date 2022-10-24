@@ -32,7 +32,6 @@ const Detail: NextPage<IMovieProps> = ({ movie }) => {
             <TextBox>
               Genres :
               {movie?.genres.map((el: MovieTypes.Genres) => {
-                console.log(el, "genres")
                 return <GenreText key={el.id}>{el.name}</GenreText>;
               })}
             </TextBox>
@@ -121,7 +120,6 @@ const TextBox = styled.div`
   font-weight: 700;
   /* overflow: auto; */
 `;
-
 const GenreText = styled.span`
   margin: 0px 5px;
   padding: 0px 5px 0px 5px;

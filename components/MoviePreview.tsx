@@ -36,7 +36,7 @@ const MoviePreview: NextPage<IMoviePrevieProps> = ({ recommended }) => {
           </LinkWrapper>
       </OverlayContainer>
       <MoviePreviewContainer>
-        <ContentWrapper>
+        <ImageWrapper>
           <Image
             width={438}
             height={657}
@@ -44,7 +44,7 @@ const MoviePreview: NextPage<IMoviePrevieProps> = ({ recommended }) => {
             loading="lazy"
             src={`https://image.tmdb.org/t/p/w500/${imgUrl}`}
           />
-        </ContentWrapper>
+        </ImageWrapper>
       </MoviePreviewContainer>
     </MainContainer>
   );
@@ -64,7 +64,7 @@ const MoviePreviewContainer = styled.div`
   flex-direction: column;
   background-color: white;
   background-color: #020025;
-  border: 1px solid #e9e9e9;
+  /* border: 1px solid #e9e9e9; */
 `;
 const OverlayContainer = styled.div`
   position: absolute;
@@ -89,11 +89,13 @@ const MoviePreviewHeader = styled.div`
   z-index:2;
   padding-right : 30px;
 `;
-const ContentWrapper = styled.div`
+const ImageWrapper = styled.div`
   width:100%;
 
   span {
     -webkit-box-reflect: right 5px;
+  }
+  img {
   }
 `;
 const MovieTitle = styled.div`

@@ -34,9 +34,9 @@ const Home: NextPage<IMovieProps> = ({ movies, recommended }) => {
                   layout="fill"
                 />
               </ImageWrapper>
-              <h4 onClick={() => navigate(movie.id, movie.original_title)}>
+              <MovieTitle onClick={() => navigate(movie.id, movie.original_title)}>
                 {movie.original_title}
-              </h4>
+              </MovieTitle>
             </MovieBox>
           ))}
         </GridContainer>
@@ -75,6 +75,7 @@ const MainContainer = styled.div`
   flex-direction: column;
   gap : 30px;
   overflow: auto;
+  /* background-color: black; */
 `;
 const SubContainer = styled.div`
   width: 1000px;
@@ -83,11 +84,13 @@ const SubContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
 `;
 const MainHeader = styled.span`
   margin-top: 20px;
   font-size: 20px;
   font-weight: 700;
+  /* color: white; */
 `;
 const GridContainer = styled.div`
   display: grid;
@@ -97,18 +100,16 @@ const GridContainer = styled.div`
   gap: 20px;
   justify-content: center;
 `;
-
 const MovieBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
-
 const ImageWrapper = styled.div`
   width: 225px;
   height: 337px;
   transition: transform 0.2s ease-in-out;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  box-shadow: rgba(0, 0, 0, 0.103) 0px 4px 12px;
   position: relative;
   border-radius: 12px;
   cursor: pointer;
@@ -122,3 +123,7 @@ const ImageWrapper = styled.div`
     transform: scale(1.05) translateY(-10px);
   }
 `;
+const MovieTitle = styled.div`
+  font-size: 17px;
+  font-weight:600;
+`
