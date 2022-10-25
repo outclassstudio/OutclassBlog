@@ -1,7 +1,10 @@
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
 import styled from "styled-components";
+import { BackgroundContainer, Description, Genres, GenreText, Homepage, IconWrapper, ImageWrapper, LinkWrapper, MovieMainContainer, MoviePreviewHeader, MovieTitle, OverlayContainer, Rating, SubText, TextBox, TextWrapper } from "../../styles/movie-detail.style";
 
 interface IMovieProps {
   movie : MovieTypes.Movie
@@ -11,41 +14,44 @@ const Detail: NextPage<IMovieProps> = ({ movie }) => {
   let imgUrl = movie?.poster_path || "/Logo.png";
 
   return (
-    <MovieDetailContainer>
-      <SubContainer>
-        <MovieDetailHeader>영화소개</MovieDetailHeader>
-        <ContentWrapper>
-          <LeftBox>
+    <MainContainer>
+      <MovieMainContainer>
+        <MoviePreviewHeader>영화소개</MoviePreviewHeader>
+        <OverlayContainer>          
+            <MovieTitle>{movie?.title}</MovieTitle>
+            <Genres>
+              {movie?.genres.map((el: MovieTypes.Genres) => {
+                return <GenreText key={el.id}>{el.name}</GenreText>;
+              })}
+            </Genres>
+            <TextWrapper>
+              <TextBox>상영시간 : {movie?.runtime} min.</TextBox>
+              <TextBox>개봉일 : {movie?.release_date}</TextBox>
+            </TextWrapper>
+            <Description>{movie?.overview}</Description>
+            <IconWrapper>
+              <FontAwesomeIcon icon={faStar} color={"#ffaf4c"} width={40}/>
+              <Rating>{(+movie?.vote_average).toFixed(2)}</Rating>
+            </IconWrapper>
+            <SubText>TMDB Rating</SubText>
+            <LinkWrapper>
+            {movie?.homepage && (<Homepage href={movie?.homepage} target="_blank" rel="noreferrer">홈페이지
+              </Homepage>)}
+            </LinkWrapper>
+        </OverlayContainer>
+        <BackgroundContainer>
+          <ImageWrapper>
             <Image
-              width={380}
-              height={566}
+              width={438}
+              height={657}
               alt="/Logo.png"
               loading="lazy"
               src={`https://image.tmdb.org/t/p/w500/${imgUrl}`}
             />
-          </LeftBox>
-          <RightBox>
-            <TextBox>Title : {movie?.title}</TextBox>
-            <TextBox>Runtime : {movie?.runtime} min.</TextBox>
-            <TextBox>Release : {movie?.release_date}</TextBox>
-            <TextBox>Rating : {movie?.vote_average}</TextBox>
-            <TextBox>
-              Genres :
-              {movie?.genres.map((el: MovieTypes.Genres) => {
-                return <GenreText key={el.id}>{el.name}</GenreText>;
-              })}
-            </TextBox>
-            <TextBox>
-              Homepage :
-              <a href={movie?.homepage} target="_blank" rel="noreferrer">
-                {movie?.homepage}
-              </a>
-            </TextBox>
-            <TextBox>{movie?.overview}</TextBox>
-          </RightBox>
-        </ContentWrapper>
-      </SubContainer>
-    </MovieDetailContainer>
+          </ImageWrapper>
+        </BackgroundContainer>
+      </MovieMainContainer>
+    </MainContainer>
   );
 };
 
@@ -73,58 +79,12 @@ export const getServerSideProps: GetServerSideProps = async ({ query, req }) => 
   };
 };
 
-const MovieDetailContainer = styled.div`
+const MainContainer = styled.div`
   display: flex;
   justify-content: center;
-`;
-const SubContainer = styled.div`
-  width: 1000px;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  margin-top: 30px;
-  padding: 20px;
-  border: 1px solid #e9e9e9;
-`;
-const MovieDetailHeader = styled.div`
-  font-size: 20px;
-  font-weight: 700;
-`;
-const ContentWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-const LeftBox = styled.div`
-  flex: 2 1 0;
-  margin-right: 5px;
-
-  img {
-  }
-`;
-const RightBox = styled.div`
-  flex: 3 1 0;
-  margin-left: 5px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-`;
-const TextBox = styled.div`
-  display: flex;
-  min-height: 50px;
-  /* max-height: 136px; */
   align-items: center;
-  background-color: #e9e9e9;
-  border-radius: 5px;
-  padding: 18px;
-  font-size: 17px;
-  font-weight: 700;
+  flex-direction: column;
+  gap : 30px;
   /* overflow: auto; */
-`;
-const GenreText = styled.span`
-  margin: 0px 5px;
-  padding: 0px 5px 0px 5px;
-  border-radius: 7px;
-  background-color: #2b2b2b;
-  font-weight: 500;
-  color: white;
-`;
+  /* padding: 20px 0px; */
+`
