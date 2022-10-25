@@ -27,11 +27,11 @@ const About: NextPage = () => {
             발견해나가고 있습니다.
           </SubText>
           <SubText>
-            그리고 영화 속에 숨겨진 진실이 드러내는 '우리 세상의 진실'을
+            그리고 영화 속에 숨겨진 진실이 드러내는 우리 세상의 진실을
             이야기하고자 합니다.
           </SubText>
           <SubText>
-            천천히, 그리고 꾸준히 '좋은 컨텐츠'로 찾아뵙겠습니다:D
+            천천히, 그리고 꾸준히 좋은 컨텐츠로 찾아뵙겠습니다:D
           </SubText>
           <a
             href="https://www.youtube.com/channel/UCLlHx2GuxkUUMr0MebLBZtQ"
