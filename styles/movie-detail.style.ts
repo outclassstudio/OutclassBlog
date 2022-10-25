@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mediaQuery } from "./global.style";
 
 export const MovieMainContainer = styled.div`
   margin-top: 30px;
@@ -12,7 +13,15 @@ export const BackgroundContainer = styled.div`
   flex-direction: column;
   background-color: white;
   background-color: #020025;
-  /* border: 1px solid #e9e9e9; */
+
+  ${mediaQuery.pad} {
+    max-width: 600px;
+  }
+
+  ${mediaQuery.mobile} {
+    width: 320px;
+    height : 480px;
+  }
 `;
 export const OverlayContainer = styled.div`
   position: absolute;
@@ -24,6 +33,16 @@ export const OverlayContainer = styled.div`
   flex-direction: column;
   justify-content:center;
   padding-right : 30px;
+
+  ${mediaQuery.pad} {
+    padding-right : 10px;
+    max-width: 600px;
+  }
+
+  ${mediaQuery.mobile} {
+    width: 320px;
+    height : 480px;
+  }
 `
 export const MoviePreviewHeader = styled.div`
   width: 100%;
@@ -36,22 +55,42 @@ export const MoviePreviewHeader = styled.div`
   color: #ffffffce;
   z-index:2;
   padding-right : 30px;
+
+  ${mediaQuery.pad} {
+    font-size: 11px;
+    padding-right : 10px;
+  }
 `;
 export const ImageWrapper = styled.div`
-  width:100%;
+  /* width:100%; */
 
   span {
     -webkit-box-reflect: right 5px;
   }
   img {
   }
+
+  ${mediaQuery.pad} {
+    overflow: hidden;
+  }
 `;
 export const MovieTitle = styled.div`
-  padding-left: 18px;
+  padding-left: 200px;
   font-size: 40px;
   font-weight: 700;
   color: white;
   text-align:right;
+  text-shadow: -1px 0px 3px black, 0px 1px 3px black, 1px 0px 3px black, 0px -1px 3px black;
+
+  ${mediaQuery.pad} {
+    padding-left: 100px;
+    font-size: 25px;
+  }
+  
+  ${mediaQuery.mobile} {
+    padding-left: 20px;
+    font-size: 22px;
+  }
 `
 export const Genres = styled.div`
   display: flex;
@@ -59,6 +98,10 @@ export const Genres = styled.div`
   justify-content:right;
   padding-left: 18px;
   margin-top: 20px;
+
+  ${mediaQuery.mobile} {
+    margin-top: 10px;
+  }
 `
 export const GenreText = styled.span`
   padding: 5px 7px;
@@ -67,12 +110,20 @@ export const GenreText = styled.span`
   font-size: 12px;
   font-weight: 500;
   color: white;
+
+  ${mediaQuery.pad} {
+    font-size: 10px;
+  }
 `;
 export const TextWrapper = styled.div`
   margin-top: 20px;
   display: flex;
   justify-content:right;
   gap: 10px;
+
+  ${mediaQuery.mobile} {
+    margin-top: 15px;
+  }
 `
 export const TextBox = styled.div`
   display: flex;
@@ -80,6 +131,14 @@ export const TextBox = styled.div`
   font-size: 14px;
   font-weight: 300;
   color: #ffffffb5;
+
+  ${mediaQuery.pad} {
+    font-size: 11px;
+  }
+
+  ${mediaQuery.mobile} {
+    font-size: 8px;
+  }
 `;
 export const Description = styled.div`
   margin-top: 20px;
@@ -87,18 +146,50 @@ export const Description = styled.div`
   line-height: 1.7;
   text-align: right;
   color: #e4e4e4f2;
+
+  ${mediaQuery.pad} {
+    padding-left: 90px;
+    font-size: 13px;
+  }
+
+  ${mediaQuery.mobile} {
+    margin-top: 15px;
+    font-size: 11px;
+  }
 `
 export const IconWrapper = styled.div`
   margin-top: 20px;
-  display:flex;
-  justify-content:right;
-  gap:15px;
-  align-items:center;
+  display: flex;
+  justify-content: right;
+  gap: 15px;
+  align-items: center;
+
+  ${mediaQuery.mobile} {
+    margin-top: 15px;
+  }
+`
+export const Icon = styled.div`
+  width : 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  ${mediaQuery.pad} {
+    width : 20px;
+  }
 `
 export const Rating = styled.div`
   font-size: 50px;
   font-weight: 700;
   color: white;
+
+  ${mediaQuery.pad} {
+    font-size: 25px;
+  }
+
+  ${mediaQuery.mobile} {
+    font-size: 22px;
+  }
 `
 export const SubText = styled.div`
   padding-right: 10px;
@@ -106,12 +197,20 @@ export const SubText = styled.div`
   font-weight: 400;
   color: #bdbdbd;
   text-align: right;
+
+  ${mediaQuery.pad} {
+    font-size: 10px;
+  }
 `
 export const LinkWrapper = styled.div`
   display:flex;
   justify-content:right;
   width:100%;
   margin-top:20px;
+
+  ${mediaQuery.mobile} {
+    margin-top: 15px;
+  }
 `
 export const Homepage = styled.a`
   width : 100px;
@@ -123,4 +222,10 @@ export const Homepage = styled.a`
   font-size: 14px;
   background: linear-gradient(to bottom right, #007491, #850091);
   border-radius: 10px;
+
+  ${mediaQuery.pad} {
+    width : 70px;
+    height: 30px;
+    font-size: 10px;
+  }
 `

@@ -4,7 +4,7 @@ import axios from "axios";
 import { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
 import styled from "styled-components";
-import { BackgroundContainer, Description, Genres, GenreText, Homepage, IconWrapper, ImageWrapper, LinkWrapper, MovieMainContainer, MoviePreviewHeader, MovieTitle, OverlayContainer, Rating, SubText, TextBox, TextWrapper } from "../../styles/movie-detail.style";
+import { BackgroundContainer, Description, Genres, GenreText, Homepage, Icon, IconWrapper, ImageWrapper, LinkWrapper, MovieMainContainer, MoviePreviewHeader, MovieTitle, OverlayContainer, Rating, SubText, TextBox, TextWrapper } from "../../styles/movie-detail.style";
 
 interface IMovieProps {
   movie : MovieTypes.Movie
@@ -30,7 +30,9 @@ const Detail: NextPage<IMovieProps> = ({ movie }) => {
             </TextWrapper>
             <Description>{movie?.overview}</Description>
             <IconWrapper>
-              <FontAwesomeIcon icon={faStar} color={"#ffaf4c"} width={40}/>
+              <Icon>
+                <FontAwesomeIcon icon={faStar} color={"#ffaf4c"} width={40} />
+              </Icon>
               <Rating>{(+movie?.vote_average).toFixed(2)}</Rating>
             </IconWrapper>
             <SubText>TMDB Rating</SubText>

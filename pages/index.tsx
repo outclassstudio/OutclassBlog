@@ -5,6 +5,7 @@ import Seo from "../components/Seo";
 import ImageTag from "next/image";
 import styled from "styled-components";
 import axios from "axios";
+import { mediaQuery } from "../styles/global.style";
 
 interface IMovieProps {
   movies: MovieTypes.Movie[];
@@ -22,7 +23,7 @@ const Home: NextPage<IMovieProps> = ({ movies, recommended }) => {
       <Seo title="Home" />
       <MoviePreview recommended={recommended} />
       <SubContainer>
-        <MainHeader>TMDB 추천 영화</MainHeader>
+        <MainHeader>TMDB 최신 영화</MainHeader>
         <GridContainer>
           {movies?.map((movie: MovieTypes.Movie) => (
             <MovieBox key={movie.id}>
@@ -84,7 +85,14 @@ const SubContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+  ${mediaQuery.pad} {
+    width: 600px;
+  }
 
+  ${mediaQuery.mobile} {
+    width: 320px;
+  }
 `;
 const MainHeader = styled.span`
   margin-top: 20px;
@@ -94,11 +102,15 @@ const MainHeader = styled.span`
 `;
 const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(auto-fill, minmax(1fr, auto));
   padding: 20px;
   gap: 20px;
   justify-content: center;
+
+  ${mediaQuery.pad} {
+    grid-template-columns: repeat(2, 1fr)
+  }
 `;
 const MovieBox = styled.div`
   display: flex;
@@ -119,6 +131,11 @@ const ImageWrapper = styled.div`
     border-radius: 12px;
   }
 
+  ${mediaQuery.mobile} {
+    width: 112px;
+    height: 168px;
+  }
+
   &:hover {
     transform: scale(1.05) translateY(-10px);
   }
@@ -126,4 +143,9 @@ const ImageWrapper = styled.div`
 const MovieTitle = styled.div`
   font-size: 17px;
   font-weight:600;
+  text-align:center;
+
+  ${mediaQuery.mobile} {
+    font-size : 11px;
+  }
 `
