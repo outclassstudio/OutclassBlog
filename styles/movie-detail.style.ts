@@ -3,9 +3,9 @@ import { mediaQuery } from "./global.style";
 
 export const MovieMainContainer = styled.div`
   margin-top: 30px;
-  position:relative;
+  position: relative;
   box-shadow: rgba(0, 0, 0, 0.322) 0px 5px 25px;
-`
+`;
 export const BackgroundContainer = styled.div`
   width: 1000px;
   height: 657px;
@@ -20,45 +20,45 @@ export const BackgroundContainer = styled.div`
 
   ${mediaQuery.mobile} {
     width: 320px;
-    height : 480px;
+    height: 480px;
   }
 `;
 export const OverlayContainer = styled.div`
   position: absolute;
   width: 1000px;
   height: 657px;
-  background: linear-gradient(to left,#000000 25%, rgba(0,0,0,0));
+  background: linear-gradient(to left, #000000 25%, rgba(0, 0, 0, 0));
   display: flex;
-  z-index:1;
+  z-index: 1;
   flex-direction: column;
-  justify-content:center;
-  padding-right : 30px;
+  justify-content: center;
+  padding-right: 30px;
 
   ${mediaQuery.pad} {
-    padding-right : 10px;
+    padding-right: 10px;
     max-width: 600px;
   }
 
   ${mediaQuery.mobile} {
     width: 320px;
-    height : 480px;
+    height: 480px;
   }
-`
+`;
 export const MoviePreviewHeader = styled.div`
   width: 100%;
-  display:flex;
+  display: flex;
   justify-content: right;
   top: 40px;
   position: absolute;
   font-size: 14px;
   font-weight: 400;
   color: #ffffffce;
-  z-index:2;
-  padding-right : 30px;
+  z-index: 2;
+  padding-right: 30px;
 
   ${mediaQuery.pad} {
     font-size: 11px;
-    padding-right : 10px;
+    padding-right: 10px;
   }
 `;
 export const ImageWrapper = styled.div`
@@ -79,30 +79,31 @@ export const MovieTitle = styled.div`
   font-size: 40px;
   font-weight: 700;
   color: white;
-  text-align:right;
-  text-shadow: -1px 0px 3px black, 0px 1px 3px black, 1px 0px 3px black, 0px -1px 3px black;
+  text-align: right;
+  text-shadow: -1px 0px 3px black, 0px 1px 3px black, 1px 0px 3px black,
+    0px -1px 3px black;
 
   ${mediaQuery.pad} {
     padding-left: 100px;
     font-size: 25px;
   }
-  
+
   ${mediaQuery.mobile} {
     padding-left: 20px;
     font-size: 22px;
   }
-`
+`;
 export const Genres = styled.div`
   display: flex;
   gap: 5px;
-  justify-content:right;
+  justify-content: right;
   padding-left: 18px;
   margin-top: 20px;
 
   ${mediaQuery.mobile} {
     margin-top: 10px;
   }
-`
+`;
 export const GenreText = styled.span`
   padding: 5px 7px;
   border-radius: 7px;
@@ -118,13 +119,13 @@ export const GenreText = styled.span`
 export const TextWrapper = styled.div`
   margin-top: 20px;
   display: flex;
-  justify-content:right;
+  justify-content: right;
   gap: 10px;
 
   ${mediaQuery.mobile} {
     margin-top: 15px;
   }
-`
+`;
 export const TextBox = styled.div`
   display: flex;
   align-items: center;
@@ -156,7 +157,7 @@ export const Description = styled.div`
     margin-top: 15px;
     font-size: 11px;
   }
-`
+`;
 export const IconWrapper = styled.div`
   margin-top: 20px;
   display: flex;
@@ -167,17 +168,17 @@ export const IconWrapper = styled.div`
   ${mediaQuery.mobile} {
     margin-top: 15px;
   }
-`
+`;
 export const Icon = styled.div`
-  width : 40px;
+  width: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   ${mediaQuery.pad} {
-    width : 20px;
+    width: 20px;
   }
-`
+`;
 export const Rating = styled.div`
   font-size: 50px;
   font-weight: 700;
@@ -190,7 +191,7 @@ export const Rating = styled.div`
   ${mediaQuery.mobile} {
     font-size: 22px;
   }
-`
+`;
 export const SubText = styled.div`
   padding-right: 10px;
   font-size: 13px;
@@ -201,31 +202,31 @@ export const SubText = styled.div`
   ${mediaQuery.pad} {
     font-size: 10px;
   }
-`
+`;
 export const LinkWrapper = styled.div`
-  display:flex;
-  justify-content:right;
-  width:100%;
-  margin-top:20px;
+  display: flex;
+  justify-content: right;
+  width: 100%;
+  margin-top: 20px;
 
   ${mediaQuery.mobile} {
     margin-top: 15px;
   }
-`
+`;
 export const Homepage = styled.a`
-  width : 100px;
+  width: 100px;
   height: 40px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  color:white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
   font-size: 14px;
   background: linear-gradient(to bottom right, #007491, #850091);
   border-radius: 10px;
 
   ${mediaQuery.pad} {
-    width : 70px;
+    width: 70px;
     height: 30px;
     font-size: 10px;
   }
-`
+`;

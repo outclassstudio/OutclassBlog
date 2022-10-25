@@ -4,10 +4,28 @@ import axios from "axios";
 import { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
 import styled from "styled-components";
-import { BackgroundContainer, Description, Genres, GenreText, Homepage, Icon, IconWrapper, ImageWrapper, LinkWrapper, MovieMainContainer, MoviePreviewHeader, MovieTitle, OverlayContainer, Rating, SubText, TextBox, TextWrapper } from "../../styles/movie-detail.style";
+import {
+  BackgroundContainer,
+  Description,
+  Genres,
+  GenreText,
+  Homepage,
+  Icon,
+  IconWrapper,
+  ImageWrapper,
+  LinkWrapper,
+  MovieMainContainer,
+  MoviePreviewHeader,
+  MovieTitle,
+  OverlayContainer,
+  Rating,
+  SubText,
+  TextBox,
+  TextWrapper,
+} from "../../styles/movie-detail.style";
 
 interface IMovieProps {
-  movie : MovieTypes.Movie
+  movie: MovieTypes.Movie;
 }
 
 const Detail: NextPage<IMovieProps> = ({ movie }) => {
@@ -17,29 +35,32 @@ const Detail: NextPage<IMovieProps> = ({ movie }) => {
     <MainContainer>
       <MovieMainContainer>
         <MoviePreviewHeader>영화소개</MoviePreviewHeader>
-        <OverlayContainer>          
-            <MovieTitle>{movie?.title}</MovieTitle>
-            <Genres>
-              {movie?.genres.map((el: MovieTypes.Genres) => {
-                return <GenreText key={el.id}>{el.name}</GenreText>;
-              })}
-            </Genres>
-            <TextWrapper>
-              <TextBox>상영시간 : {movie?.runtime} min.</TextBox>
-              <TextBox>개봉일 : {movie?.release_date}</TextBox>
-            </TextWrapper>
-            <Description>{movie?.overview}</Description>
-            <IconWrapper>
-              <Icon>
-                <FontAwesomeIcon icon={faStar} color={"#ffaf4c"} width={40} />
-              </Icon>
-              <Rating>{(+movie?.vote_average).toFixed(2)}</Rating>
-            </IconWrapper>
-            <SubText>TMDB Rating</SubText>
-            <LinkWrapper>
-            {movie?.homepage && (<Homepage href={movie?.homepage} target="_blank" rel="noreferrer">홈페이지
-              </Homepage>)}
-            </LinkWrapper>
+        <OverlayContainer>
+          <MovieTitle>{movie?.title}</MovieTitle>
+          <Genres>
+            {movie?.genres.map((el: MovieTypes.Genres) => {
+              return <GenreText key={el.id}>{el.name}</GenreText>;
+            })}
+          </Genres>
+          <TextWrapper>
+            <TextBox>상영시간 : {movie?.runtime} min.</TextBox>
+            <TextBox>개봉일 : {movie?.release_date}</TextBox>
+          </TextWrapper>
+          <Description>{movie?.overview}</Description>
+          <IconWrapper>
+            <Icon>
+              <FontAwesomeIcon icon={faStar} color={"#ffaf4c"} width={40} />
+            </Icon>
+            <Rating>{(+movie?.vote_average).toFixed(2)}</Rating>
+          </IconWrapper>
+          <SubText>TMDB Rating</SubText>
+          <LinkWrapper>
+            {movie?.homepage && (
+              <Homepage href={movie?.homepage} target="_blank" rel="noreferrer">
+                홈페이지
+              </Homepage>
+            )}
+          </LinkWrapper>
         </OverlayContainer>
         <BackgroundContainer>
           <ImageWrapper>
@@ -59,10 +80,13 @@ const Detail: NextPage<IMovieProps> = ({ movie }) => {
 
 export default Detail;
 
-export const getServerSideProps: GetServerSideProps = async ({ query, req }) => {
-  let movie
-  let id 
-  if(query.params) {
+export const getServerSideProps: GetServerSideProps = async ({
+  query,
+  req,
+}) => {
+  let movie;
+  let id;
+  if (query.params) {
     id = query.params[1];
   }
   try {
@@ -86,7 +110,7 @@ const MainContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap : 30px;
+  gap: 30px;
   /* overflow: auto; */
   /* padding: 20px 0px; */
-`
+`;

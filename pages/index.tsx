@@ -35,7 +35,9 @@ const Home: NextPage<IMovieProps> = ({ movies, recommended }) => {
                   layout="fill"
                 />
               </ImageWrapper>
-              <MovieTitle onClick={() => navigate(movie.id, movie.original_title)}>
+              <MovieTitle
+                onClick={() => navigate(movie.id, movie.original_title)}
+              >
                 {movie.original_title}
               </MovieTitle>
             </MovieBox>
@@ -51,7 +53,7 @@ export default Home;
 export const getServerSideProps: GetServerSideProps = async () => {
   // const id = 634649;
   // const id = 616820
-  const id = 436270
+  const id = 436270;
   const allMovies = await axios(
     `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
   );
@@ -59,7 +61,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
   );
   const movies = allMovies.data.results;
-  const recommended = previewMovies.data
+  const recommended = previewMovies.data;
 
   return {
     props: {
@@ -74,7 +76,7 @@ const MainContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap : 30px;
+  gap: 30px;
   overflow: auto;
   /* background-color: black; */
 `;
@@ -85,7 +87,7 @@ const SubContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   ${mediaQuery.pad} {
     width: 600px;
   }
@@ -109,7 +111,7 @@ const GridContainer = styled.div`
   justify-content: center;
 
   ${mediaQuery.pad} {
-    grid-template-columns: repeat(2, 1fr)
+    grid-template-columns: repeat(2, 1fr);
   }
 `;
 const MovieBox = styled.div`
@@ -142,10 +144,10 @@ const ImageWrapper = styled.div`
 `;
 const MovieTitle = styled.div`
   font-size: 17px;
-  font-weight:600;
-  text-align:center;
+  font-weight: 600;
+  text-align: center;
 
   ${mediaQuery.mobile} {
-    font-size : 11px;
+    font-size: 11px;
   }
-`
+`;

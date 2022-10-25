@@ -3,12 +3,6 @@ import Image from "next/image";
 import styled from "styled-components";
 import Seo from "../components/Seo";
 
-const introduce_text = `"영화를 보는 새로운 시각! 아웃클라쓰입니다. 저희는 영화에 대한
-다양한 해석을 통해 영화 속에 숨겨져있는 진실을 발견해나가고
-있습니다. 그리고 영화 속에 숨겨진 진실이 드러내는 '우리 세상의
-진실'을 이야기하고자 합니다. 천천히, 그리고 꾸준히 '좋은 영상'으로
-찾아뵙겠습니다:D"`;
-
 const About: NextPage = () => {
   return (
     <AboutContainer>
@@ -24,13 +18,27 @@ const About: NextPage = () => {
           />
         </LeftBox>
         <RightBox>
-          <div>{introduce_text}</div>
+          <MainTextWrapper>
+            <MainText>영화를 보는 새로운 시각!</MainText>
+            <MainText>아웃클라쓰입니다.</MainText>
+          </MainTextWrapper>
+          <SubText>
+            저희는 영화에 대한 다양한 해석을 통해 영화 속에 숨겨져 있는 진실을
+            발견해나가고 있습니다.
+          </SubText>
+          <SubText>
+            그리고 영화 속에 숨겨진 진실이 드러내는 '우리 세상의 진실'을
+            이야기하고자 합니다.
+          </SubText>
+          <SubText>
+            천천히, 그리고 꾸준히 '좋은 컨텐츠'로 찾아뵙겠습니다:D
+          </SubText>
           <a
             href="https://www.youtube.com/channel/UCLlHx2GuxkUUMr0MebLBZtQ"
             target="_blank"
             rel="noreferrer"
           >
-            유튜브링크
+            유튜브채널
           </a>
         </RightBox>
       </SubContainer>
@@ -58,16 +66,22 @@ const LeftBox = styled.div`
 `;
 const RightBox = styled.div`
   width: 485px;
+  padding: 20px;
+  gap: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 
-  div {
-    margin: 10px;
-    font-size: 20px;
-  }
-
-  a {
-    margin: 10px;
+  a:hover {
+    text-decoration: underline;
+    font-weight: bold;
+    color: #850091;
   }
 `;
+const MainTextWrapper = styled.div``;
+const MainText = styled.div`
+  font-size: 30px;
+  font-weight: 600;
+  font-weight: bold;
+`;
+const SubText = styled.div``;
