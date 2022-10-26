@@ -6,6 +6,8 @@ import ImageTag from "next/image";
 import styled from "styled-components";
 import axios from "axios";
 import { mediaQuery } from "../styles/global.style";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 interface IMovieProps {
   movies: MovieTypes.Movie[];
@@ -18,12 +20,18 @@ const Home: NextPage<IMovieProps> = ({ movies, recommended }) => {
     router.push(`/movies/${title}/${id}`);
   };
 
+  console.log(movies)
+
   return (
     <MainContainer>
       <Seo title="Home" />
       <MoviePreview recommended={recommended} />
       <SubContainer>
-        <MainHeader>TMDB 최신 영화</MainHeader>
+        <MainHeader>
+          <HeaderText>
+            TMDB 최신 영화
+          </HeaderText>
+        </MainHeader>
         <GridContainer>
           {movies?.map((movie: MovieTypes.Movie) => (
             <MovieBox key={movie.id}>
@@ -35,11 +43,18 @@ const Home: NextPage<IMovieProps> = ({ movies, recommended }) => {
                   layout="fill"
                 />
               </ImageWrapper>
-              <MovieTitle
-                onClick={() => navigate(movie.id, movie.original_title)}
-              >
-                {movie.original_title}
-              </MovieTitle>
+              <MovieInfoWrapper>
+                <MovieTitle
+                  onClick={() => navigate(movie.id, movie.original_title)}
+                >
+                  {movie.original_title}
+                </MovieTitle>
+                <MovieInfoSubWrapper>
+                  <MovieInfo>{movie.release_date}</MovieInfo>
+                  <FontAwesomeIcon icon={faStar} color={"#ffaf4c"} width={10} />
+                  <MovieInfo>{movie.vote_average}</MovieInfo>
+                </MovieInfoSubWrapper>
+              </MovieInfoWrapper>
             </MovieBox>
           ))}
         </GridContainer>
@@ -96,11 +111,20 @@ const SubContainer = styled.div`
     width: 340px;
   }
 `;
-const MainHeader = styled.span`
+const MainHeader = styled.div`
+  width: 100%;
+  display: flex;
+  padding: 0px 25px;
   margin-top: 20px;
+`;
+const HeaderText = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: left;
   font-size: 20px;
   font-weight: 700;
-`;
+  border-bottom : 1px solid gray;
+`
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -125,8 +149,6 @@ const MovieBox = styled.div`
 const ImageWrapper = styled.div`
   width: 225px;
   height: 337px;
-  /* width : 100%;
-  height: 100%; */
   transition: transform 0.2s ease-in-out;
   box-shadow: rgba(0, 0, 0, 0.103) 0px 4px 12px;
   position: relative;
@@ -152,12 +174,34 @@ const ImageWrapper = styled.div`
     transform: scale(1.05) translateY(-10px);
   }
 `;
-const MovieTitle = styled.div`
-  font-size: 17px;
-  font-weight: 600;
-  text-align: center;
+const MovieInfoWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  ${mediaQuery.middle} {
+    padding : 0px 20px;
+  }
 
   ${mediaQuery.mobile} {
-    font-size: 11px;
+    padding : 0px 10px;
+  }
+`
+const MovieTitle = styled.div`
+  font-size: 14px;
+  font-weight: 600;
+
+  ${mediaQuery.mobile} {
+    font-size: 12px;
   }
 `;
+const MovieInfoSubWrapper = styled.div`
+  display: flex;
+  gap: 5px;
+
+
+`
+const MovieInfo = styled.div`
+  font-size : 11px;
+  font-weight: 300;
+`
