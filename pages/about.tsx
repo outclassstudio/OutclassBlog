@@ -2,6 +2,8 @@ import { NextPage } from "next";
 import Image from "next/image";
 import styled from "styled-components";
 import Seo from "../components/Seo";
+import { mediaQuery } from "../styles/global.style";
+import { Homepage } from "../styles/movie-detail.style";
 
 const About: NextPage = () => {
   return (
@@ -10,11 +12,10 @@ const About: NextPage = () => {
       <SubContainer>
         <LeftBox>
           <Image
-            layout="intrinsic"
-            width="450"
-            height="495"
+            layout="fill"
             alt="/Logo.png"
             src="/Logo.png"
+            quality={50}
           />
         </LeftBox>
         <RightBox>
@@ -33,13 +34,13 @@ const About: NextPage = () => {
           <SubText>
             천천히, 그리고 꾸준히 좋은 컨텐츠로 찾아뵙겠습니다:D
           </SubText>
-          <a
+          <Homepage
             href="https://www.youtube.com/channel/UCLlHx2GuxkUUMr0MebLBZtQ"
             target="_blank"
             rel="noreferrer"
           >
             유튜브채널
-          </a>
+          </Homepage>
         </RightBox>
       </SubContainer>
     </AboutContainer>
@@ -54,20 +55,38 @@ const AboutContainer = styled.div`
 `;
 const SubContainer = styled.div`
   width: 1000px;
+  height: 600px;
   display: flex;
+  gap: 30px;
   background-color: white;
   margin-top: 30px;
   padding: 20px;
   border: 1px solid #e9e9e9;
   justify-content: center;
+
+  ${mediaQuery.pad} {
+    height: 400px;
+    width: 90vw;
+    gap: 20px;
+  }
+
+  ${mediaQuery.mobile} { 
+    width: 340px;
+  }
+
 `;
 const LeftBox = styled.div`
-  width: 485px;
+  position: relative;
+  width: 50%;
+
+  img {
+    object-fit: contain;
+  }
 `;
 const RightBox = styled.div`
-  width: 485px;
+  width: 50%;
   padding: 20px;
-  gap: 10px;
+  gap: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -75,7 +94,9 @@ const RightBox = styled.div`
   a:hover {
     text-decoration: underline;
     font-weight: bold;
-    color: #850091;
+  }
+  ${mediaQuery.pad} {
+    gap: 10px;
   }
 `;
 const MainTextWrapper = styled.div``;
@@ -83,5 +104,25 @@ const MainText = styled.div`
   font-size: 30px;
   font-weight: 600;
   font-weight: bold;
+
+  ${mediaQuery.pad} {
+    font-size: 22px;
+  }
+  ${mediaQuery.middle} {
+    font-size: 18px;
+  }
+  ${mediaQuery.mobile} {
+    font-size: 16px;
+  }
 `;
-const SubText = styled.div``;
+const SubText = styled.div`
+  color: #525252;
+  
+  ${mediaQuery.pad} {
+    font-size: 13px;
+  }
+
+  ${mediaQuery.pad} {
+    font-size: 11px;
+  }
+`;
