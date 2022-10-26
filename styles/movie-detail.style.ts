@@ -15,11 +15,11 @@ export const BackgroundContainer = styled.div`
   background-color: #020025;
 
   ${mediaQuery.pad} {
-    max-width: 600px;
+    width: 90vw;
   }
 
   ${mediaQuery.mobile} {
-    width: 320px;
+    width: 340px;
     height: 480px;
   }
 `;
@@ -35,12 +35,13 @@ export const OverlayContainer = styled.div`
   padding-right: 30px;
 
   ${mediaQuery.pad} {
-    padding-right: 10px;
-    max-width: 600px;
+    padding-right: 20px;
+    width: 90vw;
   }
 
   ${mediaQuery.mobile} {
-    width: 320px;
+    padding-right: 10px;
+    width: 340px;
     height: 480px;
   }
 `;
@@ -58,6 +59,10 @@ export const MoviePreviewHeader = styled.div`
 
   ${mediaQuery.pad} {
     font-size: 11px;
+    padding-right: 20px;
+  }
+
+  ${mediaQuery.mobile} {
     padding-right: 10px;
   }
 `;
@@ -102,6 +107,7 @@ export const Genres = styled.div`
 
   ${mediaQuery.mobile} {
     margin-top: 10px;
+    gap: 3px;
   }
 `;
 export const GenreText = styled.span`
@@ -114,6 +120,11 @@ export const GenreText = styled.span`
 
   ${mediaQuery.pad} {
     font-size: 10px;
+  }
+
+  ${mediaQuery.mobile} {
+    font-weight: 300;
+    padding : 4px;
   }
 `;
 export const TextWrapper = styled.div`
