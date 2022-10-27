@@ -97,6 +97,8 @@ const MainContainer = styled.div`
 `;
 const SubContainer = styled.div`
   width: 1000px;
+  /* max-height: 740px; */
+  /* overflow: hidden; */
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   display: flex;
@@ -121,9 +123,14 @@ const HeaderText = styled.div`
   width: 100%;
   display: flex;
   justify-content: left;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
+  padding-bottom : 15px;
   border-bottom : 1px solid gray;
+
+  ${mediaQuery.pad} {
+    font-size: 16px;
+  }
 `
 const GridContainer = styled.div`
   display: grid;
@@ -152,12 +159,12 @@ const ImageWrapper = styled.div`
   transition: transform 0.2s ease-in-out;
   box-shadow: rgba(0, 0, 0, 0.103) 0px 4px 12px;
   position: relative;
-  border-radius: 12px;
+  border-radius: 7px;
   cursor: pointer;
 
   img {
     object-fit: contain;
-    border-radius: 12px;
+    border-radius: 7px;
   }
 
   ${mediaQuery.middle} {
@@ -180,11 +187,11 @@ const MovieInfoWrapper = styled.div`
   flex-direction: column;
 
   ${mediaQuery.middle} {
-    padding : 0px 20px;
+    padding : 0px 10px;
   }
 
   ${mediaQuery.mobile} {
-    padding : 0px 10px;
+    padding : 0px 5px;
   }
 `
 const MovieTitle = styled.div`
@@ -198,8 +205,6 @@ const MovieTitle = styled.div`
 const MovieInfoSubWrapper = styled.div`
   display: flex;
   gap: 5px;
-
-
 `
 const MovieInfo = styled.div`
   font-size : 11px;
