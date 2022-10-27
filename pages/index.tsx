@@ -9,17 +9,28 @@ import { mediaQuery } from "../styles/global.style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FlexColumnDiv, FlexColumnDivCentered, FlexDiv } from "../styles/utility.style";
+import { useState } from "react";
 
 interface IMovieProps {
   movies: MovieTypes.Movie[];
   recommended: MovieTypes.Movie;
 }
 
+type SortedMovieType = null | MovieTypes.Movie[]
+
 const Home: NextPage<IMovieProps> = ({ movies, recommended }) => {
+  const [sortedMovieList, setSortedMovieList] = useState<SortedMovieType>(null)
   const router = useRouter();
   const navigate = (id: number, title: string) => {
     router.push(`/movies/${title}/${id}`);
   };
+
+  const handleSortingMovieList = () => {
+    const sorted = movies?.sort((a,b) => Number(b.vote_average) - Number(a.vote_average))
+    if(sorted) {
+      setSortedMovieList(sorted)
+    } 
+  }
 
   // console.log(movies)
 
@@ -32,9 +43,14 @@ const Home: NextPage<IMovieProps> = ({ movies, recommended }) => {
           <HeaderText>
             TMDB 최신 영화
           </HeaderText>
+          <select onChange={handleSortingMovieList}>
+            <option>최신순</option>
+            <option>평점순</option>
+          </select>
         </MainHeader>
         <GridContainer>
-          {movies?.map((movie: MovieTypes.Movie) => (
+          {sortedMovieList === null ?
+          (movies.map((movie: MovieTypes.Movie) => (
             <MovieBox key={movie.id}>
               <ImageWrapper>
                 <ImageTag
@@ -57,7 +73,32 @@ const Home: NextPage<IMovieProps> = ({ movies, recommended }) => {
                 </MovieInfoSubWrapper>
               </MovieInfoWrapper>
             </MovieBox>
-          ))}
+          )))
+        : (sortedMovieList.map((movie: MovieTypes.Movie) => (
+          <MovieBox key={movie.id}>
+            <ImageWrapper>
+              <ImageTag
+                onClick={() => navigate(movie.id, movie.original_title)}
+                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                alt="/Logo.png"
+                layout="fill"
+              />
+            </ImageWrapper>
+            <MovieInfoWrapper>
+              <MovieTitle
+                onClick={() => navigate(movie.id, movie.original_title)}
+              >
+                {movie.original_title}
+              </MovieTitle>
+              <MovieInfoSubWrapper>
+                <MovieInfo>{movie.release_date}</MovieInfo>
+                <FontAwesomeIcon icon={faStar} color={"#ffaf4c"} width={10} />
+                <MovieInfo>{movie.vote_average}</MovieInfo>
+              </MovieInfoSubWrapper>
+            </MovieInfoWrapper>
+          </MovieBox>
+        )))
+        }
         </GridContainer>
       </SubContainer>
     </MainContainer>
