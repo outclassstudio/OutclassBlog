@@ -1,16 +1,15 @@
 import styled from "styled-components";
 import { mediaQuery } from "./global.style";
+import { FlexColumnDiv, FlexDiv, FlexDivCentered } from "./utility.style";
 
 export const MovieMainContainer = styled.div`
   margin-top: 30px;
   position: relative;
   box-shadow: rgba(0, 0, 0, 0.322) 0px 5px 25px;
 `;
-export const BackgroundContainer = styled.div`
+export const BackgroundContainer = styled(FlexColumnDiv)`
   width: 1000px;
   height: 657px;
-  display: flex;
-  flex-direction: column;
   background-color: white;
   background-color: #020025;
 
@@ -23,14 +22,12 @@ export const BackgroundContainer = styled.div`
     height: 480px;
   }
 `;
-export const OverlayContainer = styled.div`
+export const OverlayContainer = styled(FlexColumnDiv)`
   position: absolute;
   width: 1000px;
   height: 657px;
   background: linear-gradient(to left, #000000 25%, rgba(0, 0, 0, 0));
-  display: flex;
   z-index: 1;
-  flex-direction: column;
   justify-content: center;
   padding-right: 30px;
 
@@ -45,17 +42,16 @@ export const OverlayContainer = styled.div`
     height: 480px;
   }
 `;
-export const MoviePreviewHeader = styled.div`
+export const MoviePreviewHeader = styled(FlexDiv)`
   width: 100%;
-  display: flex;
   justify-content: right;
-  top: 40px;
   position: absolute;
+  top: 40px;
   font-size: 14px;
   font-weight: 400;
   color: #ffffffce;
-  z-index: 2;
   padding-right: 30px;
+  z-index: 2;
 
   ${mediaQuery.pad} {
     font-size: 11px;
@@ -67,12 +63,8 @@ export const MoviePreviewHeader = styled.div`
   }
 `;
 export const ImageWrapper = styled.div`
-  /* width:100%; */
-
   span {
     -webkit-box-reflect: right 5px;
-  }
-  img {
   }
 
   ${mediaQuery.pad} {
@@ -98,8 +90,7 @@ export const MovieTitle = styled.div`
     font-size: 22px;
   }
 `;
-export const Genres = styled.div`
-  display: flex;
+export const Genres = styled(FlexDiv)`
   gap: 5px;
   justify-content: right;
   padding-left: 18px;
@@ -127,9 +118,8 @@ export const GenreText = styled.span`
     padding : 4px;
   }
 `;
-export const TextWrapper = styled.div`
+export const TextWrapper = styled(FlexDiv)`
   margin-top: 20px;
-  display: flex;
   justify-content: right;
   gap: 10px;
 
@@ -137,8 +127,7 @@ export const TextWrapper = styled.div`
     margin-top: 15px;
   }
 `;
-export const TextBox = styled.div`
-  display: flex;
+export const TextBox = styled(FlexDiv)`
   align-items: center;
   font-size: 14px;
   font-weight: 300;
@@ -169,9 +158,8 @@ export const Description = styled.div`
     font-size: 11px;
   }
 `;
-export const IconWrapper = styled.div`
+export const IconWrapper = styled(FlexDiv)`
   margin-top: 20px;
-  display: flex;
   justify-content: right;
   gap: 15px;
   align-items: center;
@@ -180,11 +168,8 @@ export const IconWrapper = styled.div`
     margin-top: 15px;
   }
 `;
-export const Icon = styled.div`
+export const Icon = styled(FlexDivCentered)`
   width: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   ${mediaQuery.pad} {
     width: 20px;
@@ -214,8 +199,7 @@ export const SubText = styled.div`
     font-size: 10px;
   }
 `;
-export const LinkWrapper = styled.div`
-  display: flex;
+export const LinkWrapper = styled(FlexDiv)`
   justify-content: right;
   width: 100%;
   margin-top: 20px;
@@ -224,12 +208,9 @@ export const LinkWrapper = styled.div`
     margin-top: 15px;
   }
 `;
-export const Homepage = styled.a`
+export const Homepage = styled(FlexDivCentered)`
   width: 100px;
   height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: white;
   font-size: 14px;
   background: linear-gradient(to bottom right, #007491, #850091);

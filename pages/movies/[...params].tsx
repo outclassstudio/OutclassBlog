@@ -23,6 +23,7 @@ import {
   TextBox,
   TextWrapper,
 } from "../../styles/movie-detail.style";
+import { FlexColumnDivCentered } from "../../styles/utility.style";
 
 interface IMovieProps {
   movie: MovieTypes.Movie;
@@ -56,7 +57,7 @@ const Detail: NextPage<IMovieProps> = ({ movie }) => {
           <SubText>TMDB Rating</SubText>
           <LinkWrapper>
             {movie?.homepage && (
-              <Homepage href={movie?.homepage} target="_blank" rel="noreferrer">
+              <Homepage as="a" href={movie?.homepage} target="_blank" rel="noreferrer">
                 홈페이지
               </Homepage>
             )}
@@ -82,7 +83,6 @@ export default Detail;
 
 export const getServerSideProps: GetServerSideProps = async ({
   query,
-  req,
 }) => {
   let movie;
   let id;
@@ -105,12 +105,6 @@ export const getServerSideProps: GetServerSideProps = async ({
   };
 };
 
-const MainContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+const MainContainer = styled(FlexColumnDivCentered)`
   gap: 30px;
-  /* overflow: auto; */
-  /* padding: 20px 0px; */
 `;

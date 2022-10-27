@@ -8,6 +8,7 @@ import axios from "axios";
 import { mediaQuery } from "../styles/global.style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { FlexColumnDiv, FlexColumnDivCentered, FlexDiv } from "../styles/utility.style";
 
 interface IMovieProps {
   movies: MovieTypes.Movie[];
@@ -20,7 +21,7 @@ const Home: NextPage<IMovieProps> = ({ movies, recommended }) => {
     router.push(`/movies/${title}/${id}`);
   };
 
-  console.log(movies)
+  // console.log(movies)
 
   return (
     <MainContainer>
@@ -66,9 +67,8 @@ const Home: NextPage<IMovieProps> = ({ movies, recommended }) => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  // const id = 634649;
-  // const id = 616820
-  const id = 436270;
+  const id = 634649;
+  // const id = 436270;
   const allMovies = await axios(
     `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
   );
@@ -86,23 +86,14 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 
-const MainContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+const MainContainer = styled(FlexColumnDivCentered)`
   gap: 30px;
   overflow: auto;
-  /* background-color: black; */
 `;
-const SubContainer = styled.div`
+const SubContainer = styled(FlexColumnDiv)`
   width: 1000px;
-  /* max-height: 740px; */
-  /* overflow: hidden; */
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  display: flex;
-  flex-direction: column;
   align-items: center;
 
   ${mediaQuery.pad} {
@@ -113,15 +104,13 @@ const SubContainer = styled.div`
     width: 340px;
   }
 `;
-const MainHeader = styled.div`
+const MainHeader = styled(FlexDiv)`
   width: 100%;
-  display: flex;
   padding: 0px 25px;
   margin-top: 20px;
 `;
-const HeaderText = styled.div`
+const HeaderText = styled(FlexDiv)`
   width: 100%;
-  display: flex;
   justify-content: left;
   font-size: 18px;
   font-weight: 700;
@@ -143,13 +132,12 @@ const GridContainer = styled.div`
   ${mediaQuery.pad} {
     grid-template-columns: repeat(3, 1fr);
   }
+
   ${mediaQuery.middle} {
     grid-template-columns: repeat(2, 1fr);
   }
 `;
-const MovieBox = styled.div`
-  display: flex;
-  flex-direction: column;
+const MovieBox = styled(FlexColumnDiv)`
   align-items: center;
   position: relative;
 `;
@@ -181,10 +169,8 @@ const ImageWrapper = styled.div`
     transform: scale(1.05) translateY(-10px);
   }
 `;
-const MovieInfoWrapper = styled.div`
+const MovieInfoWrapper = styled(FlexColumnDiv)`
   width: 100%;
-  display: flex;
-  flex-direction: column;
 
   ${mediaQuery.middle} {
     padding : 0px 10px;
@@ -202,7 +188,7 @@ const MovieTitle = styled.div`
     font-size: 12px;
   }
 `;
-const MovieInfoSubWrapper = styled.div`
+const MovieInfoSubWrapper = styled(FlexDiv)`
   display: flex;
   gap: 5px;
 `

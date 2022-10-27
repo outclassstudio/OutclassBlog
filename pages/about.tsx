@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Seo from "../components/Seo";
 import { mediaQuery } from "../styles/global.style";
 import { Homepage } from "../styles/movie-detail.style";
+import { FlexColumnDiv, FlexDiv } from "../styles/utility.style";
 
 const About: NextPage = () => {
   return (
@@ -35,6 +36,7 @@ const About: NextPage = () => {
             천천히, 그리고 꾸준히 좋은 컨텐츠로 찾아뵙겠습니다:D
           </SubText>
           <Homepage
+            as="a"
             href="https://www.youtube.com/channel/UCLlHx2GuxkUUMr0MebLBZtQ"
             target="_blank"
             rel="noreferrer"
@@ -49,14 +51,12 @@ const About: NextPage = () => {
 
 export default About;
 
-const AboutContainer = styled.div`
-  display: flex;
+const AboutContainer = styled(FlexDiv)`
   justify-content: center;
 `;
-const SubContainer = styled.div`
+const SubContainer = styled(FlexDiv)`
   width: 1000px;
   height: 600px;
-  display: flex;
   gap: 30px;
   background-color: white;
   margin-top: 30px;
@@ -83,12 +83,10 @@ const LeftBox = styled.div`
     object-fit: contain;
   }
 `;
-const RightBox = styled.div`
+const RightBox = styled(FlexColumnDiv)`
   width: 50%;
   padding: 20px;
   gap: 15px;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
 
   a:hover {
@@ -121,7 +119,6 @@ const SubText = styled.div`
   ${mediaQuery.pad} {
     font-size: 13px;
   }
-
   ${mediaQuery.pad} {
     font-size: 11px;
   }

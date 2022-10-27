@@ -10,7 +10,7 @@ const Layout: NextPage<ILayoutProps> = ({ children }) => {
   return (
     <>
       <Nav />
-      <div>{children}</div>
+        <div>{children}</div>
       <Footer />
     </>
   );

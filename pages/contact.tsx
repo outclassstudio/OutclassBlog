@@ -1,6 +1,7 @@
 import { NextPage } from "next";
 import styled from "styled-components";
 import Seo from "../components/Seo";
+import { FlexDiv } from "../styles/utility.style";
 
 const Contact: NextPage = () => {
   return (
@@ -15,13 +16,11 @@ const Contact: NextPage = () => {
 
 export default Contact;
 
-const ContactMainContainer = styled.div`
-  display: flex;
+const ContactMainContainer = styled(FlexDiv)`
   justify-content: center;
 `;
-const SubContainer = styled.div`
+const SubContainer = styled(FlexDiv)`
   width: 1000px;
-  display: flex;
   background-color: white;
   margin-top: 30px;
   padding: 20px;
