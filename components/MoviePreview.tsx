@@ -52,6 +52,7 @@ const MoviePreview: NextPage<IMoviePrevieProps> = ({ recommended }) => {
         <SubText>TMDB Rating</SubText>
         <LinkWrapper>
           <Homepage
+            as="a"
             href={recommended?.homepage}
             target="_blank"
             rel="noreferrer"

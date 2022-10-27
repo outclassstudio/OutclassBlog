@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import { FlexColumnDivCentered } from "../styles/utility.style";
 
 const Nav: NextPage = () => {
   const router = useRouter();
@@ -38,13 +39,8 @@ const Nav: NextPage = () => {
 
 export default Nav;
 
-const NavContainer = styled.div`
-  padding-top: 10px;
-  padding-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+const NavContainer = styled(FlexColumnDivCentered)`
+  padding-top: 10px 0px;
   background-color: white;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -40px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -50px;
@@ -55,7 +51,7 @@ const NavContainer = styled.div`
 `;
 const Menus = styled.div`
   a {
-    margin: 0px 5px 0px 5px;
+    margin: 0px 5px;
     font-weight: bold;
   }
   a:hover {
