@@ -8,6 +8,7 @@ import { mediaQuery } from "../styles/global.style";
 import { FlexColumnDiv, FlexColumnDivCentered, FlexDiv } from "../styles/utility.style";
 import React, { useEffect, useState } from "react";
 import MovieBox from "../components/MovieBox";
+import LatestVideo from "../components/LatestVideo";
 
 interface IMovieProps {
   movies: MovieTypes.Movie[];
@@ -42,6 +43,7 @@ const Home: NextPage<IMovieProps> = ({ movies, recommended }) => {
   return (
     <MainContainer>
       <Seo title="Home" />
+      <LatestVideo/>
       <MoviePreview recommended={recommended} />
       <SubContainer>
         <MainHeader>
