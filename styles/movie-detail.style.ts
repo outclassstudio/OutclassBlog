@@ -3,14 +3,12 @@ import { mediaQuery } from "./global.style";
 import { FlexColumnDiv, FlexDiv, FlexDivCentered } from "./utility.style";
 
 export const MovieMainContainer = styled.div`
-  margin-top: 30px;
   position: relative;
   box-shadow: rgba(0, 0, 0, 0.322) 0px 5px 25px;
 `;
 export const BackgroundContainer = styled(FlexColumnDiv)`
   width: 1000px;
   height: 657px;
-  background-color: white;
   background-color: #020025;
 
   ${mediaQuery.pad} {
@@ -115,7 +113,7 @@ export const GenreText = styled.span`
 
   ${mediaQuery.mobile} {
     font-weight: 300;
-    padding : 4px;
+    padding: 4px;
   }
 `;
 export const TextWrapper = styled(FlexDiv)`

@@ -5,7 +5,11 @@ import Seo from "../components/Seo";
 import styled from "styled-components";
 import axios from "axios";
 import { mediaQuery } from "../styles/global.style";
-import { FlexColumnDiv, FlexColumnDivCentered, FlexDiv } from "../styles/utility.style";
+import {
+  FlexColumnDiv,
+  FlexColumnDivCentered,
+  FlexDiv,
+} from "../styles/utility.style";
 import React, { useEffect, useState } from "react";
 import MovieBox from "../components/MovieBox";
 import LatestVideo from "../components/LatestVideo";
@@ -27,7 +31,7 @@ const Home: NextPage<IMovieProps> = ({ movies, recommended }) => {
   //     sorted = movies?.sort((a,b) => Number(b.vote_average) - Number(a.vote_average))
   //     if(sorted.length) {
   //       setSortedMovieList(sorted)
-  //     } 
+  //     }
   //   } else if(e.target.value === "최신순") {
   //     sorted = movies?.sort((a,b) =>{
   //       const date1:any = new Date(a.release_date);
@@ -36,14 +40,14 @@ const Home: NextPage<IMovieProps> = ({ movies, recommended }) => {
   //     })
   //     if(sorted.length) {
   //       setSortedMovieList(sorted)
-  //     } 
+  //     }
   //   }
   // }
 
   return (
     <MainContainer>
       <Seo title="Home" />
-      <LatestVideo/>
+      <LatestVideo />
       <MoviePreview recommended={recommended} />
       <SubContainer>
         <MainHeader>
@@ -58,11 +62,10 @@ const Home: NextPage<IMovieProps> = ({ movies, recommended }) => {
           </HeaderText>
         </MainHeader>
         <GridContainer>
-          {  movies &&
-           movies.map((movie: MovieTypes.Movie) => (
-            <MovieBox key={movie.id} movie={movie}/>
-          ))
-          }
+          {movies &&
+            movies.map((movie: MovieTypes.Movie) => (
+              <MovieBox key={movie.id} movie={movie} />
+            ))}
           {/* {sortedMovieList === null ?
           (movies.map((movie: MovieTypes.Movie) => (
             <MovieBox key={movie.id} movie={movie}/>
@@ -127,13 +130,13 @@ const HeaderText = styled(FlexDiv)`
   justify-content: space-between;
   font-size: 18px;
   font-weight: 700;
-  padding-bottom : 15px;
-  border-bottom : 1px solid gray;
+  padding-bottom: 15px;
+  border-bottom: 1px solid gray;
 
   ${mediaQuery.pad} {
     font-size: 16px;
   }
-`
+`;
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -152,4 +155,4 @@ const GridContainer = styled.div`
 `;
 const SelectBox = styled.select`
   height: 25px;
-`
+`;
