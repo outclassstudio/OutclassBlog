@@ -15,30 +15,30 @@ interface IMovieProps {
   recommended: MovieTypes.Movie;
 }
 
-type SortedMovieType = null | MovieTypes.Movie[]
+// type SortedMovieType = null | MovieTypes.Movie[]
 
 const Home: NextPage<IMovieProps> = ({ movies, recommended }) => {
-  const [sortedMovieList, setSortedMovieList] = useState<SortedMovieType>(null)
+  // const [sortedMovieList, setSortedMovieList] = useState<SortedMovieType>(null)
 
-  const handleSortingMovieList = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    let sorted: SortedMovieType
+  // const handleSortingMovieList = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  //   let sorted: SortedMovieType
 
-    if(e.target.value === "평점순") {
-      sorted = movies?.sort((a,b) => Number(b.vote_average) - Number(a.vote_average))
-      if(sorted.length) {
-        setSortedMovieList(sorted)
-      } 
-    } else if(e.target.value === "최신순") {
-      sorted = movies?.sort((a,b) =>{
-        const date1:any = new Date(a.release_date);
-        const date2:any = new Date(b.release_date);
-        return date2.getTime() - date1.getTime();
-      })
-      if(sorted.length) {
-        setSortedMovieList(sorted)
-      } 
-    }
-  }
+  //   if(e.target.value === "평점순") {
+  //     sorted = movies?.sort((a,b) => Number(b.vote_average) - Number(a.vote_average))
+  //     if(sorted.length) {
+  //       setSortedMovieList(sorted)
+  //     } 
+  //   } else if(e.target.value === "최신순") {
+  //     sorted = movies?.sort((a,b) =>{
+  //       const date1:any = new Date(a.release_date);
+  //       const date2:any = new Date(b.release_date);
+  //       return date2.getTime() - date1.getTime();
+  //     })
+  //     if(sorted.length) {
+  //       setSortedMovieList(sorted)
+  //     } 
+  //   }
+  // }
 
   return (
     <MainContainer>
@@ -49,22 +49,28 @@ const Home: NextPage<IMovieProps> = ({ movies, recommended }) => {
         <MainHeader>
           <HeaderText>
             TMDB 최신 영화
-            <SelectBox onChange={handleSortingMovieList}>
+            {/* <SelectBox onChange={handleSortingMovieList}>
+            <SelectBox >
               <option>옵션을 선택하세요</option>
               <option>최신순</option>
               <option>평점순</option>
-            </SelectBox>
+            </SelectBox> */}
           </HeaderText>
         </MainHeader>
         <GridContainer>
-          {sortedMovieList === null ?
+          {  movies &&
+           movies.map((movie: MovieTypes.Movie) => (
+            <MovieBox key={movie.id} movie={movie}/>
+          ))
+          }
+          {/* {sortedMovieList === null ?
           (movies.map((movie: MovieTypes.Movie) => (
             <MovieBox key={movie.id} movie={movie}/>
           )))
         : (sortedMovieList?.map((movie: MovieTypes.Movie) => (
             <MovieBox key={movie.id} movie={movie}/>
         )))
-        }
+        } */}
         </GridContainer>
       </SubContainer>
     </MainContainer>
@@ -75,7 +81,6 @@ export default Home;
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const id = 634649;
-  // const id = 436270;
   const allMovies = await axios(
     `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
   );

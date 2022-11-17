@@ -17,24 +17,13 @@ const LatestVideo: NextPage<ILatestVideoProps> = () => {
       </BackgroundContainer>
       <MoviePreviewHeader>Outclass 최신 영상</MoviePreviewHeader>
       <ContentsContainer>
-        <MovieTitle>영상제목</MovieTitle>
-        {/* <Genres>
-          {recommended?.genres.map((el: MovieTypes.Genres) => {
-            return <GenreText key={el.id}>{el.name}</GenreText>;
-          })}
-        </Genres> */}
+        <MovieTitle>인류 최후의 적, 직장 상사 | 영화 파이트 클럽
+        </MovieTitle>
         <TextWrapper>
           <TextBox>상영시간 : 없음</TextBox>
           <TextBox>개봉일 : 없음</TextBox>
         </TextWrapper>
-        <Description>인류최후의적</Description>
-        {/* <IconWrapper>
-          <Icon>
-            <FontAwesomeIcon icon={faStar} color={"#ffaf4c"} width={40} />
-          </Icon>
-          <Rating>{(+recommended?.vote_average).toFixed(2)}</Rating>
-        </IconWrapper> */}
-        {/* <SubText>TMDB Rating</SubText> */}
+        <Description>인류최후의적, 직장 상사와 얽힌 이야기와 함께 모욕감에 대처하는 방법에 대해 이야기 합니다.</Description>
         <LinkWrapper>
           <Homepage
             as="a"
@@ -62,6 +51,7 @@ const LatestMainContainer = styled(FlexDiv)`
 
   ${mediaQuery.pad} {
     flex-direction: column;
+    align-items: center;
     width: 90vw;
     height: 600px;
   }
@@ -71,14 +61,6 @@ const LatestMainContainer = styled(FlexDiv)`
     height: 480px;
   }
 `;
-const ContentsContainer = styled.div`
-  height: 657px;
-  
-  ${mediaQuery.pad} {
-    width: 100%;
-    height: 50%;
-  }
-`
 const BackgroundContainer = styled(FlexColumnDiv)`
   width: 50%;
   height: 657px;
@@ -90,6 +72,18 @@ const BackgroundContainer = styled(FlexColumnDiv)`
     /* height: 50%; */
   }
 `;
+const ContentsContainer = styled(FlexDiv)`
+  display: flex;
+  height: 657px;
+
+  ${mediaQuery.pad} {
+    padding: 0px 30px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 50%;
+  }
+`
 const VideoContent = styled.iframe`
   width: 560;
   height: 315;
@@ -129,8 +123,10 @@ const MovieTitle = styled.div`
     0px -1px 3px black;
 
   ${mediaQuery.pad} {
-    padding-left: 100px;
-    font-size: 25px;
+    text-align: left;
+    width: 100%;
+    padding-left: 0px;
+    font-size: 22px;
   }
 
   ${mediaQuery.mobile} {
@@ -143,7 +139,18 @@ const TextWrapper = styled(FlexDiv)`
   justify-content: right;
   gap: 10px;
 
+  ${mediaQuery.pad} {
+    justify-content: left;
+    width: 100%;
+    padding-left: 0px;
+    font-size: 25px;
+  }
+
   ${mediaQuery.mobile} {
+    width: 100%;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
     margin-top: 15px;
   }
 `;
@@ -169,7 +176,8 @@ const Description = styled.div`
   color: #e4e4e4f2;
 
   ${mediaQuery.pad} {
-    padding-left: 90px;
+    text-align: left;
+    padding-left: 0px;
     font-size: 13px;
   }
 
@@ -183,7 +191,8 @@ const LinkWrapper = styled(FlexDiv)`
   width: 100%;
   margin-top: 20px;
 
-  ${mediaQuery.mobile} {
+  ${mediaQuery.pad} {
+    justify-content: left;
     margin-top: 15px;
   }
 `;
