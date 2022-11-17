@@ -4,37 +4,50 @@ import { NextPage } from "next";
 import Image from "next/image";
 import styled from "styled-components";
 import { mediaQuery } from "../styles/global.style";
-import { FlexColumnDiv, FlexDiv, FlexDivCentered } from "../styles/utility.style";
+import {
+  FlexColumnDiv,
+  FlexDiv,
+  FlexDivCentered,
+} from "../styles/utility.style";
 
-interface ILatestVideoProps {
-}
+interface ILatestVideoProps {}
 
 const LatestVideo: NextPage<ILatestVideoProps> = () => {
   return (
     <LatestMainContainer>
-      <BackgroundContainer>
-          <VideoContent src="https://www.youtube.com/embed/DYWNU_LpWpI" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></VideoContent>
-      </BackgroundContainer>
-      <MoviePreviewHeader>Outclass 최신 영상</MoviePreviewHeader>
-      <ContentsContainer>
-        <MovieTitle>인류 최후의 적, 직장 상사 | 영화 파이트 클럽
-        </MovieTitle>
-        <TextWrapper>
-          <TextBox>상영시간 : 없음</TextBox>
-          <TextBox>개봉일 : 없음</TextBox>
-        </TextWrapper>
-        <Description>인류최후의적, 직장 상사와 얽힌 이야기와 함께 모욕감에 대처하는 방법에 대해 이야기 합니다.</Description>
-        <LinkWrapper>
-          <Homepage
-            as="a"
-            href="https://www.youtube.com/embed/DYWNU_LpWpI"
-            target="_blank"
-            rel="noreferrer"
-          >
-            유튜브링크
-          </Homepage>
-        </LinkWrapper>
-      </ContentsContainer>
+      <OverlayContainer>
+        <BackgroundContainer>
+          <VideoContent
+            src="https://www.youtube.com/embed/DYWNU_LpWpI"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></VideoContent>
+        </BackgroundContainer>
+        <MoviePreviewHeader>Outclass 최신 영상</MoviePreviewHeader>
+        <ContentsContainer>
+          <MovieTitle>인류 최후의 적, 직장 상사 | 영화 파이트 클럽</MovieTitle>
+          <TextWrapper>
+            <TextBox>영상길이 : 8분48초</TextBox>
+            <TextBox>분류 : 영화 해석</TextBox>
+          </TextWrapper>
+          <Description>
+            인류최후의적, 직장 상사와 얽힌 이야기와 함께 모욕감에 대처하는
+            방법에 대해 이야기 합니다.
+          </Description>
+          <LinkWrapper>
+            <Homepage
+              as="a"
+              href="https://www.youtube.com/watch?v=DYWNU_LpWpI"
+              target="_blank"
+              rel="noreferrer"
+            >
+              유튜브링크
+            </Homepage>
+          </LinkWrapper>
+        </ContentsContainer>
+      </OverlayContainer>
     </LatestMainContainer>
   );
 };
@@ -48,6 +61,26 @@ const LatestMainContainer = styled(FlexDiv)`
   position: relative;
   box-shadow: rgba(0, 0, 0, 0.322) 0px 5px 25px;
   background-color: #020025;
+  background-image: url("/fightclub.jpg");
+  background-size: cover;
+
+  ${mediaQuery.pad} {
+    width: 90vw;
+    height: 600px;
+  }
+
+  ${mediaQuery.mobile} {
+    width: 340px;
+    height: 480px;
+  }
+`;
+const OverlayContainer = styled(FlexDiv)`
+  position: absolute;
+  width: 1000px;
+  height: 657px;
+  background: linear-gradient(to left, #000000 10%, rgba(0, 0, 0, 0));
+  z-index: 1;
+  justify-content: center;
 
   ${mediaQuery.pad} {
     flex-direction: column;
@@ -62,37 +95,27 @@ const LatestMainContainer = styled(FlexDiv)`
   }
 `;
 const BackgroundContainer = styled(FlexColumnDiv)`
-  width: 50%;
+  width: 450px;
   height: 657px;
-  /* background-color: white; */
+  padding-left: 30px;
+  justify-content: center;
+  align-items: center;
 
   ${mediaQuery.pad} {
-    padding: 10px;
+    padding: 30px 10px 10px 10px;
     width: 100%;
-    /* height: 50%; */
   }
 `;
-const ContentsContainer = styled(FlexDiv)`
-  display: flex;
-  height: 657px;
-
-  ${mediaQuery.pad} {
-    padding: 0px 30px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 50%;
-  }
-`
 const VideoContent = styled.iframe`
-  width: 560;
-  height: 315;
+  width: 100%;
+  height: 42%;
+  box-shadow: rgba(0, 0, 0, 1) 0px 0px 30px, rgba(0, 0, 0, 1) 0px 0px 30px;
 
   ${mediaQuery.pad} {
     width: 100%;
     height: 100%;
   }
-`
+`;
 const MoviePreviewHeader = styled(FlexDiv)`
   width: 100%;
   justify-content: right;
@@ -105,6 +128,9 @@ const MoviePreviewHeader = styled(FlexDiv)`
   z-index: 2;
 
   ${mediaQuery.pad} {
+    top: 10px;
+    padding-left: 10px;
+    justify-content: left;
     font-size: 11px;
     padding-right: 20px;
   }
@@ -113,8 +139,18 @@ const MoviePreviewHeader = styled(FlexDiv)`
     padding-right: 10px;
   }
 `;
+const ContentsContainer = styled(FlexColumnDiv)`
+  justify-content: center;
+  width: 550px;
+  height: 657px;
+  padding: 0px 30px;
+
+  ${mediaQuery.pad} {
+    width: 100%;
+    height: 50%;
+  }
+`;
 const MovieTitle = styled.div`
-  padding-left: 200px;
   font-size: 40px;
   font-weight: 700;
   color: white;
@@ -144,6 +180,7 @@ const TextWrapper = styled(FlexDiv)`
     width: 100%;
     padding-left: 0px;
     font-size: 25px;
+    margin-top: 20px;
   }
 
   ${mediaQuery.mobile} {
@@ -170,7 +207,7 @@ const TextBox = styled(FlexDiv)`
 `;
 const Description = styled.div`
   margin-top: 20px;
-  padding-left: 460px;
+  /* padding-left: 460px; */
   line-height: 1.7;
   text-align: right;
   color: #e4e4e4f2;
@@ -185,7 +222,7 @@ const Description = styled.div`
     margin-top: 15px;
     font-size: 11px;
   }
-`
+`;
 const LinkWrapper = styled(FlexDiv)`
   justify-content: right;
   width: 100%;
@@ -193,7 +230,7 @@ const LinkWrapper = styled(FlexDiv)`
 
   ${mediaQuery.pad} {
     justify-content: left;
-    margin-top: 15px;
+    margin: 15px 0px;
   }
 `;
 const Homepage = styled(FlexDivCentered)`
