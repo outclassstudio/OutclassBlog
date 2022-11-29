@@ -59,6 +59,7 @@ const Home: NextPage<IMovieProps> = ({ movies, recommended }) => {
               <option>최신순</option>
               <option>평점순</option>
             </SelectBox> */}
+            <div>provided by TMDB</div>
           </HeaderText>
         </MainHeader>
         <GridContainer>
@@ -90,7 +91,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const previewMovies = await axios(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`
   );
-  const movies = allMovies.data.results;
+  const movies = allMovies.data.results.sort((a:any,b:any) => b.vote_average - a.vote_average);
   const recommended = previewMovies.data;
 
   return {
@@ -132,6 +133,14 @@ const HeaderText = styled(FlexDiv)`
   font-weight: 700;
   padding-bottom: 15px;
   border-bottom: 1px solid gray;
+
+  div {
+    display:flex;
+    align-items: end;
+    font-size:13px;
+    font-weight: normal;
+    color: #505050;
+  }
 
   ${mediaQuery.pad} {
     font-size: 16px;
